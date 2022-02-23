@@ -77,30 +77,30 @@ data "aws_iam_policy_document" "main" {
       identifiers = local.service_principals
     }
 
-    principals {
-      type        = "AWS"
-      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
-    }
+#    principals {
+#      type        = "AWS"
+#      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
+#    }
   }
 
-  statement {
-    sid = "ReadOwnLogs"
-
-    actions = [
-      "s3:Get*",
-      "s3:List*",
-    ]
-
-    resources = [
-      "arn:aws:s3:::${aws_s3_bucket.main.bucket}",
-      "arn:aws:s3:::${aws_s3_bucket.main.bucket}/*"
-    ]
-
-    principals {
-      type        = "AWS"
-      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
-    }
-  }
+#  statement {
+#    sid = "ReadOwnLogs"
+#
+#    actions = [
+#      "s3:Get*",
+#      "s3:List*",
+#    ]
+#
+#    resources = [
+#      "arn:aws:s3:::${aws_s3_bucket.main.bucket}",
+#      "arn:aws:s3:::${aws_s3_bucket.main.bucket}/*"
+#    ]
+#
+#    principals {
+#      type        = "AWS"
+#      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
+#    }
+#  }
 
   statement {
     sid       = "WriteLogs"
